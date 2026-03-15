@@ -34,6 +34,20 @@
     "name": "stanton-inc"
   },
   "transaction": {
+    "alternate_connections": [
+      {
+        "name": "google-oauth2",
+        "strategy": "google-oauth2"
+      },
+      {
+        "name": "apple",
+        "strategy": "apple"
+      },
+      {
+        "name": "windowslive",
+        "strategy": "windowslive"
+      }
+    ],
     "connection": {
       "name": "agnosco",
       "options": {
