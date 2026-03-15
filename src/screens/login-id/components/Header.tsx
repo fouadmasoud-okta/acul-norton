@@ -1,4 +1,5 @@
 import ULThemeLogo from "@/components/ULThemeLogo";
+import ULThemeSubtitle from "@/components/ULThemeSubtitle";
 import ULThemeTitle from "@/components/ULThemeTitle";
 
 import { useLoginIdManager } from "../hooks/useLoginIdManager";
@@ -12,7 +13,10 @@ function Header() {
   return (
     <>
       <ULThemeLogo altText={logoAltText}></ULThemeLogo>
-      <ULThemeTitle className="mt-3">{texts?.title || locales?.heading?.title}</ULThemeTitle>
+      <ULThemeTitle>{texts?.title || locales?.heading?.title}</ULThemeTitle>
+      <ULThemeSubtitle>
+        {texts?.description || locales?.heading?.description}
+      </ULThemeSubtitle>
     </>
   );
 }

@@ -3,12 +3,9 @@
         "title": "Login",
         "orText": "OR"
     },
-    "welcomePanel": {
-        "title": "Welcome",
-        "description": "Log in to continue"
-    },
     "heading": {
-        "title": "Sign In",
+        "title": "Welcome",
+        "description": "Log in to continue",
         "logoAltText": "Application Logo"
     },
     "footer": {

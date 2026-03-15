@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -145,81 +144,87 @@ Created to support alignment related utlities like justify, text-align etc with 
 }
 
 :root {
-  /* Colors — SecureShield brand */
-  --ul-theme-color-primary-button: oklch(0.88 0.18 95);       /* amber/gold primary */
-  --ul-theme-color-primary-button-label: oklch(0.18 0.02 250); /* dark charcoal on button */
-  --ul-theme-color-secondary-button-border: oklch(0.90 0.01 90);
-  --ul-theme-color-secondary-button-label: oklch(0.18 0.02 250);
-  --ul-theme-color-base-focus-color: oklch(0.55 0.15 250);    /* blue accent */
-  --ul-theme-color-base-hover-color: oklch(0.18 0.02 250);
-  --ul-theme-color-links-focused-components: oklch(0.55 0.15 250);
-  --ul-theme-color-header: oklch(0.18 0.02 250);
-  --ul-theme-color-body-text: oklch(0.18 0.02 250);
-  --ul-theme-color-widget-background: oklch(1 0 0);
-  --ul-theme-color-widget-border: oklch(0.90 0.01 90);
-  --ul-theme-color-input-labels-placeholders: oklch(0.45 0.02 250);
-  --ul-theme-color-input-filled-text: oklch(0.18 0.02 250);
-  --ul-theme-color-input-border: oklch(0.90 0.01 90);
-  --ul-theme-color-input-background: oklch(1 0 0);
-  --ul-theme-color-icons: oklch(0.45 0.02 250);
+  /* Colors */
+  --ul-theme-color-primary-button: #635dff;
+  --ul-theme-color-primary-button-label: #ffffff;
+  --ul-theme-color-secondary-button-border: #c9cace;
+  --ul-theme-color-secondary-button-label: #1e212a;
+  --ul-theme-color-base-focus-color: #635dff;
+  --ul-theme-color-base-hover-color: #000000;
+  --ul-theme-color-links-focused-components: #635dff;
+  --ul-theme-color-header: #1e212a;
+  --ul-theme-color-body-text: #1e212a;
+  --ul-theme-color-widget-background: #ffffff;
+  --ul-theme-color-widget-border: #c9cace;
+  --ul-theme-color-input-labels-placeholders: #65676e;
+  --ul-theme-color-input-filled-text: #000000;
+  --ul-theme-color-input-border: #c9cace;
+  --ul-theme-color-input-background: #ffffff;
+  --ul-theme-color-icons: #65676e;
   --ul-theme-color-error: #d03c38;
   --ul-theme-color-success: #13a688;
   --ul-theme-color-warning: #ffdb5f;
-  --ul-theme-color-captcha-widget-theme: light;
-  --ul-theme-color-spinner: oklch(0.45 0.02 250);
-  --ul-theme-color-qrcode-border: oklch(0.90 0.01 90);
+  --ul-theme-color-captcha-widget-theme: dark;
+  --ul-theme-color-spinner: #6f7780;
+  --ul-theme-color-qrcode-border: #dee2e6;
 
-  /* Borders — 0.5rem radius to match app */
+  /* Borders */
   --ul-theme-border-buttons-style: rounded;
   --ul-theme-border-inputs-style: rounded;
   --ul-theme-border-button-border-weight: 1px;
-  --ul-theme-border-button-border-radius: 8px;
+  --ul-theme-border-button-border-radius: 3px;
   --ul-theme-border-input-border-weight: 1px;
-  --ul-theme-border-input-border-radius: 8px;
-  --ul-theme-border-widget-corner-radius: 8px;
+  --ul-theme-border-input-border-radius: 3px;
+  --ul-theme-border-widget-corner-radius: 5px;
   --ul-theme-border-widget-border-weight: 0px;
   --ul-theme-border-show-widget-shadow: 1;
-  --ul-theme-border-links-border-radius: 4px;
+  --ul-theme-border-links-border-radius: 3px;
 
-  /* Fonts — Geist to match app */
+  /* Fonts */
   --ul-theme-font-reference-text-size: 16px;
   --ul-theme-font-links-style: normal;
   --ul-theme-font-title-size: 1.5rem;
-  --ul-theme-font-title-weight: 600;
+  --ul-theme-font-title-weight: 400;
   --ul-theme-font-subtitle-size: 0.875rem;
   --ul-theme-font-subtitle-weight: 400;
   --ul-theme-font-body-text-size: 0.875rem;
   --ul-theme-font-body-text-weight: 400;
   --ul-theme-font-buttons-text-size: 1rem;
-  --ul-theme-font-buttons-text-weight: 500;
+  --ul-theme-font-buttons-text-weight: 400;
   --ul-theme-font-input-labels-size: 1rem;
   --ul-theme-font-input-labels-weight: 400;
   --ul-theme-font-links-size: 0.875rem;
   --ul-theme-font-links-weight: 700;
   --ul-theme-font-list-size: 1.025rem;
 
-  /* Page Background — warm light gray matching app background */
+  /* Page Background */
   --ul-theme-page-bg-page-layout: center;
-  --ul-theme-page-bg-background-color: oklch(0.97 0.005 90);
+  --ul-theme-page-bg-background-color: #000000;
   --ul-theme-page-bg-background-image-url: none;
 
   /* Widget */
   --ul-theme-widget-logo-position: center;
-  /* TODO: replace with your deployed domain, e.g. "https://your-app.vercel.app/icon.svg" */
-  --ul-theme-widget-logo-url: "https://upload.wikimedia.org/wikipedia/commons/8/83/Norton-logo-2021.svg";
+  --ul-theme-widget-logo-url: "https://cdn.auth0.com/blog/auth0_by_okta_logo_black.png";
   --ul-theme-widget-logo-height: 52px;
   --ul-theme-widget-header-text-alignment: center;
   --ul-theme-widget-social-buttons-layout: bottom;
 
   /* Global base styles not directly tied to Tailwind utility names */
   font-family:
-    "Geist",
     ui-sans-serif,
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
-    sans-serif;
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
