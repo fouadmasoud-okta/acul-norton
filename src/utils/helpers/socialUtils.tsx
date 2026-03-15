@@ -4,7 +4,7 @@ import type {
 } from "@auth0/auth0-acul-react/types";
 import type { ReactNode } from "react";
 
-import { GoogleIcon } from "@/assets/icons";
+import { AppleIcon, GoogleIcon, WindowsIcon } from "@/assets/icons";
 
 import { getIcon } from "./iconUtils";
 
@@ -18,6 +18,18 @@ interface SocialProviderDetails {
 const PROVIDER_ICONS: Record<string, ReactNode> = {
   "google-oauth2": <GoogleIcon />,
   google: <GoogleIcon />,
+  apple: <AppleIcon width="20" height="20" />,
+  windowslive: <WindowsIcon />,
+  microsoft: <WindowsIcon />,
+  waad: <WindowsIcon />,
+};
+
+const PROVIDER_DISPLAY_NAMES: Record<string, string> = {
+  "google-oauth2": "Google",
+  apple: "Apple",
+  windowslive: "Microsoft",
+  microsoft: "Microsoft",
+  waad: "Microsoft",
 };
 
 /**
@@ -29,6 +41,11 @@ const generateDisplayName = (connection: SocialConnection): string => {
   // Check if it's an EnterpriseConnection with options.displayName
   if ("options" in connection && connection.options?.displayName) {
     return connection.options.displayName;
+  }
+
+  // Use known display names keyed by strategy for consistent labelling
+  if (connection.strategy && PROVIDER_DISPLAY_NAMES[connection.strategy]) {
+    return PROVIDER_DISPLAY_NAMES[connection.strategy];
   }
 
   // Fallback to capitalizing the connection.name if not in map

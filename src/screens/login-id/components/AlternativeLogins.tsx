@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import ULThemeSocialProviderButton from "@/components/ULThemeSocialProviderButton";
-import { getIcon } from "@/utils/helpers/iconUtils";
+import { PasskeyIcon } from "@/assets/icons";
+import { cn } from "@/lib/utils";
 import type { SocialConnection } from "@/utils/helpers/socialUtils";
 import { getSocialProviderDetails } from "@/utils/helpers/socialUtils";
 
@@ -16,55 +18,65 @@ const AlternativeLogins = () => {
     handlePasskeyLogin,
   } = useLoginIdManager();
 
-  // Handle text fallbacks in component
   const passkeyButtonText =
     texts?.passkeyButtonText || locales?.alternativeLogins?.passkeyButtonText;
 
   const handleConnectionLogin = (connection: SocialConnection) => {
-    const federatedLoginOptions = {
+    handleFederatedLogin({
       connection: connection.name,
       ...(connection.metadata || {}),
-    };
-
-    handleFederatedLogin(federatedLoginOptions);
+    });
   };
 
-  // Only show passkey button if passkeys are enabled AND autofill is NOT active
-  // When showPasskeyAutofill is true, passkey selection happens via input autocomplete
   const showPasskeyButton = isPasskeyEnabled && !showPasskeyAutofill;
+  const hasSocialConnections =
+    alternateConnections && alternateConnections.length > 0;
+
+  if (!showPasskeyButton && !hasSocialConnections) return null;
 
   return (
-    <>
-      <div className="space-y-3 mt-2">
-        {showPasskeyButton && (
-          <ULThemeSocialProviderButton
-            key="passkey"
-            displayName={locales?.alternativeLogins?.passkeyLabel}
-            buttonText={passkeyButtonText}
-            iconComponent={<span className="text-primary">{getIcon()}</span>}
-            onClick={() => handlePasskeyLogin()}
-          />
-        )}
-        {alternateConnections?.map((connection: SocialConnection) => {
-          if (!connection?.name) {
-            return null;
-          }
-
-          const { displayName, iconComponent } =
-            getSocialProviderDetails(connection);
-          const socialButtonText = `${locales?.alternativeLogins?.continueWithText} ${displayName}`;
-          return (
-            <ULThemeSocialProviderButton
-              key={connection.name}
-              displayName={displayName}
-              buttonText={socialButtonText}
-              iconComponent={iconComponent}
-              onClick={() => handleConnectionLogin(connection)}
-            />
-          );
-        })}
-      </div>
-    </>
+    <div className="space-y-3 mt-2">
+      {showPasskeyButton && (
+        <ULThemeSocialProviderButton
+          key="passkey"
+          displayName={locales?.alternativeLogins?.passkeyLabel ?? "Passkey"}
+          buttonText={passkeyButtonText ?? "Continue with a passkey"}
+          iconComponent={<PasskeyIcon />}
+          onClick={() => handlePasskeyLogin()}
+        />
+      )}
+      {hasSocialConnections && (
+        <div className="flex gap-3 w-full max-w-[320px]">
+          {alternateConnections!.map((connection: SocialConnection) => {
+            if (!connection?.name) return null;
+            const { displayName, iconComponent } =
+              getSocialProviderDetails(connection);
+            return (
+              <Button
+                key={connection.name}
+                variant="outline"
+                className={cn(
+                  "flex-1 h-[52px]",
+                  "bg-white border-gray-mid cursor-pointer",
+                  "theme-universal:rounded-button",
+                  "theme-universal:border-(length:--ul-theme-border-button-border-weight)",
+                  "theme-universal:border-secondary-button-border",
+                  "theme-universal:hover:shadow-(--button-hover-shadow)",
+                  "theme-universal:focus:outline-none theme-universal:focus:ring-4 theme-universal:focus:ring-base-focus/15"
+                )}
+                onClick={() => handleConnectionLogin(connection)}
+                aria-label={`Continue with ${displayName}`}
+                title={`Continue with ${displayName}`}
+              >
+                <span className="w-5 h-5 flex items-center justify-center">
+                  {iconComponent}
+                </span>
+              </Button>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 };
 
