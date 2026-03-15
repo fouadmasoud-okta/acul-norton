@@ -2,6 +2,9 @@ import type {
   Connection,
   EnterpriseConnection,
 } from "@auth0/auth0-acul-react/types";
+import type { ReactNode } from "react";
+
+import { GoogleIcon } from "@/assets/icons";
 
 import { getIcon } from "./iconUtils";
 
@@ -9,8 +12,13 @@ export type SocialConnection = Connection | EnterpriseConnection;
 
 interface SocialProviderDetails {
   displayName: string;
-  iconComponent: React.ReactNode | null;
+  iconComponent: ReactNode | null;
 }
+
+const PROVIDER_ICONS: Record<string, ReactNode> = {
+  "google-oauth2": <GoogleIcon />,
+  google: <GoogleIcon />,
+};
 
 /**
  * Generates a display name for a social connection.
@@ -48,7 +56,10 @@ export const getSocialProviderDetails = (
   connection: SocialConnection
 ): SocialProviderDetails => {
   const displayName = generateDisplayName(connection);
-  const iconComponent = getIcon();
+  const iconComponent =
+    PROVIDER_ICONS[connection.name] ??
+    (connection.strategy ? PROVIDER_ICONS[connection.strategy] : null) ??
+    getIcon();
 
   return {
     displayName,

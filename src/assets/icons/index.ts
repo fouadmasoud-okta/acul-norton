@@ -5,6 +5,7 @@ export * from "./DefaultConnectionIcon";
 export * from "./DeviceGlobeAccent";
 export * from "./DeviceGlobeMask";
 export * from "./ErrorCircleIcon";
+export * from "./GoogleIcon";
 export * from "./GooglePlayIcon";
 export * from "./LockHeavyAccent";
 export * from "./LockHeavyMask";
