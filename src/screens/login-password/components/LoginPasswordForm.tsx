@@ -1,4 +1,3 @@
-import { Mail, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 import { useErrors } from "@auth0/auth0-acul-react/login-password";
@@ -37,21 +36,12 @@ function LoginPasswordForm() {
     emailPasswordlessConnection,
   } = useLoginPasswordManager();
 
-  // Determine which passwordless button to show based on the entered identifier.
-  // If they entered an email, offer phone as the alternative (and vice versa).
+  // Route to the correct passwordless connection based on the identifier type.
   // Fall back to Auth0's default connection names if not found in alternateConnections.
   const isEmail = data?.username?.includes("@") ?? false;
-  const passwordlessButton = isEmail
-    ? {
-        connectionName: phonePasswordlessConnection?.name ?? "sms",
-        label: locales?.loginPasswordForm?.loginWithPhone,
-        icon: <Phone className="w-4 h-4 shrink-0" />,
-      }
-    : {
-        connectionName: emailPasswordlessConnection?.name ?? "email",
-        label: locales?.loginPasswordForm?.loginWithEmail,
-        icon: <Mail className="w-4 h-4 shrink-0" />,
-      };
+  const passwordlessConnectionName = isEmail
+    ? (emailPasswordlessConnection?.name ?? "email")
+    : (phonePasswordlessConnection?.name ?? "sms");
 
   const form = useForm<LoginPasswordOptions>({
     defaultValues: {
@@ -226,13 +216,10 @@ function LoginPasswordForm() {
               "theme-universal:focus:outline-none theme-universal:focus:ring-4 theme-universal:focus:ring-base-focus/15"
             )}
             onClick={() =>
-              handleSwitchConnection({
-                connection: passwordlessButton.connectionName,
-              })
+              handleSwitchConnection({ connection: passwordlessConnectionName })
             }
           >
-            {passwordlessButton.icon}
-            <span>{passwordlessButton.label}</span>
+            {locales?.loginPasswordForm?.loginWithoutPassword}
           </Button>
         </div>
       </form>

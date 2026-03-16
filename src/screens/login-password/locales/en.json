@@ -28,8 +28,7 @@
         "forgotPasswordLinkText": "Forgot password?",
         "continueButtonText": "Continue",
         "editText": "Edit",
-        "loginWithPhone": "Login with phone",
-        "loginWithEmail": "Login with email"
+        "loginWithoutPassword": "Login without a password"
     },
     "errors": {
         "errorOccurred": "An error occurred",
