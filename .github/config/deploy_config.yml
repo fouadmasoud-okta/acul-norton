@@ -5,7 +5,7 @@
 
 default_screen_deployment_status:
   "login-id": true
-  "login-password": false
+  "login-password": true
   "email-identifier-challenge": false
   "login": false
   "login-passwordless-email-code": false

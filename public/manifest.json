@@ -7,6 +7,14 @@
           "variants": ["default", "with-errors"]
         }
       }
+    },
+    {
+      "login-password": {
+        "login-password": {
+          "path": "/screens/login-password/login-password",
+          "variants": ["default"]
+        }
+      }
     }
   ]
 }

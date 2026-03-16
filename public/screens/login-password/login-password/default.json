@@ -1,0 +1,76 @@
+{
+  "client": {
+    "id": "ynAQdpx1JBSCbPkXd1nbDpF9",
+    "logo_uri": "https://disloyal-merit.net",
+    "name": "Marvin - Klein"
+  },
+  "organization": {
+    "display_name": "Stoltenberg Inc",
+    "id": "org_8SOzFEX4jIuGtY5VQcAJrcuN",
+    "name": "hoppe-inc",
+    "usage": "allow"
+  },
+  "prompt": {
+    "name": "login-password"
+  },
+  "screen": {
+    "data": {
+      "username": "user@example.com"
+    },
+    "links": {
+      "reset_password": "https://each-beret.name/",
+      "signup": "https://merry-tabletop.biz",
+      "edit_identifier": "https://each-beret.name/identifier"
+    },
+    "name": "login-password"
+  },
+  "tenant": {
+    "enabled_factors": ["otp"],
+    "enabled_locales": ["en"],
+    "friendly_name": "Russel, Bernier and Okuneva",
+    "mfa_options": {
+      "pick_authenticator_enabled": true
+    },
+    "name": "stanton-inc"
+  },
+  "transaction": {
+    "connection": {
+      "name": "Username-Password-Authentication",
+      "options": {
+        "authentication_methods": {
+          "passkey": {
+            "enabled": false
+          },
+          "password": {
+            "enabled": true,
+            "min_length": 8,
+            "policy": "good"
+          }
+        },
+        "forgot_password_enabled": true,
+        "signup_enabled": true
+      },
+      "strategy": "auth0"
+    },
+    "alternate_connections": [
+      {
+        "name": "sms",
+        "strategy": "sms"
+      },
+      {
+        "name": "email",
+        "strategy": "email"
+      },
+      {
+        "name": "google-oauth2",
+        "strategy": "google-oauth2",
+        "options": {
+          "displayName": "Google",
+          "showAsButton": true
+        }
+      }
+    ],
+    "locale": "en",
+    "state": "hLJ47LrwjYHjCx9tBWqOCdkweUFzYmFQ"
+  }
+}

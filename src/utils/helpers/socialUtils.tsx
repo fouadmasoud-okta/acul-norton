@@ -4,7 +4,9 @@ import type {
 } from "@auth0/auth0-acul-react/types";
 import type { ReactNode } from "react";
 
-import { AppleIcon, GoogleIcon, WindowsIcon } from "@/assets/icons";
+import { AppleIcon } from "@/assets/icons";
+import { GoogleIcon } from "@/assets/icons/GoogleIcon";
+import { WindowsIcon } from "@/assets/icons/WindowsIcon";
 
 import { getIcon } from "./iconUtils";
 

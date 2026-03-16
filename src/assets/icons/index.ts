@@ -12,6 +12,7 @@ export * from "./WindowsIcon";
 export * from "./LockHeavyAccent";
 export * from "./LockHeavyMask";
 export * from "./MFADeviceIcon";
+export * from "./MFAEmailIcon";
 export * from "./MFAGuardianIcon";
 export * from "./MFAOTPIcon";
 export * from "./MFAPhoneIcon";

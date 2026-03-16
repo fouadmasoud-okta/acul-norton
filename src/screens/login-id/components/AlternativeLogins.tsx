@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import ULThemeSocialProviderButton from "@/components/ULThemeSocialProviderButton";
-import { PasskeyIcon } from "@/assets/icons";
+import { PasskeyIcon } from "@/assets/icons/PasskeyIcon";
 import { cn } from "@/lib/utils";
 import type { SocialConnection } from "@/utils/helpers/socialUtils";
 import { getSocialProviderDetails } from "@/utils/helpers/socialUtils";

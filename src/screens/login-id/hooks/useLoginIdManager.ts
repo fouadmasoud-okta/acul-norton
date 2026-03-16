@@ -20,6 +20,7 @@ export const useLoginIdManager = () => {
   const transaction: TransactionMembersOnLoginId = useTransaction();
 
   const { alternateConnections } = transaction;
+
   const { isCaptchaAvailable, texts, captcha, signupLink, resetPasswordLink } =
     screen;
   const {

@@ -1,14 +1,15 @@
 {
     "page": {
-        "title": "Login",
+        "title": "Login Password",
         "orText": "OR"
     },
     "welcomePanel": {
-        "title": "Welcome",
-        "description": "Log in to continue"
+        "title": "Welcome back",
+        "description": "Enter your password to continue"
     },
     "heading": {
-        "title": "Sign In",
+        "title": "Welcome",
+        "description": "Enter your password for My Company to continue to My App",
         "logoAltText": "Application Logo"
     },
     "footer": {
@@ -20,12 +21,13 @@
         "continueWithText": "Continue with",
         "passkeyLabel": "Passkey"
     },
-    "loginIdForm": {
+    "loginPasswordForm": {
         "selectCountryPlaceholder": "Select Country",
         "captchaLabel": "Enter the code shown above*",
         "passwordLabel": "Password*",
         "forgotPasswordLinkText": "Forgot password?",
         "continueButtonText": "Continue",
+        "editText": "Edit",
         "loginWithPhone": "Login with phone",
         "loginWithEmail": "Login with email"
     },
@@ -33,6 +35,10 @@
         "errorOccurred": "An error occurred",
         "identifierRequired": "Identifier is required",
         "passwordRequired": "Password is required",
-        "captchaCompletionRequired": "Please complete the CAPTCHA"
+        "captchaCompletionRequired": "Please complete the CAPTCHA",
+        "max200CharsAllowed": "Maximum 200 characters allowed",
+        "passwordMinLength": "Password must be at least",
+        "charactersText": "characters",
+        "captchaTooLong": "CAPTCHA too long"
     }
 }
