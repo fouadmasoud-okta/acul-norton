@@ -17,7 +17,7 @@ const moneylionConfig: BrandConfig = {
     // Page background — clean white
     "--ul-theme-page-bg-background-color": "#FFFFFF",
     // Logo — replace with actual MoneyLion logo URL
-    "--ul-theme-widget-logo-url": '"/brands/moneylion/logo.png"',
+    "--ul-theme-widget-logo-url": '"https://cdn.prod.website-files.com/65c76d4633ca994639a589c7/6719893ea0dd924749b86f18_moneylion-logo.png"',
     "--ul-theme-widget-logo-height": "40px",
   },
   panel: {
