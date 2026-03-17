@@ -4,6 +4,24 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 
 import App from "./App.tsx";
+import { resolveBrandConfig } from "./brands/BrandProvider";
+
+/**
+ * Apply brand CSS vars synchronously before React mounts.
+ * BrandProvider.useLayoutEffect reuses this same style tag,
+ * so there is no double-write on hydration.
+ */
+(function applyBrandVarsSync() {
+  const config = resolveBrandConfig();
+  const cssText = Object.entries(config.cssVars)
+    .map(([prop, val]) => `  ${prop}: ${val} !important;`)
+    .join("\n");
+  const style = document.createElement("style");
+  style.id = "brand-vars";
+  style.textContent = `:root {\n${cssText}\n}`;
+  document.head.appendChild(style);
+  document.documentElement.setAttribute("data-brand", config.slug);
+})();
 
 async function initializeApp() {
   /**

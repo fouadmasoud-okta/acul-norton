@@ -1,28 +1,31 @@
-import { lazy, Suspense } from "react";
+import { Suspense, lazy } from "react";
 
 import { BrandProvider } from "./brands/BrandProvider";
+import ProdScreenManager from "./ProdScreenManager";
 
 /**
  * Main App Component
- * Conditionally loads DevScreenManager or ProdScreenManager based on environment
- * Uses React.lazy() for optimal code splitting and tree-shaking
+ *
+ * Production: ProdScreenManager is eagerly imported — no Suspense, no loading flash.
+ * Dev: DevScreenManager is lazy-loaded (it pulls in the heavy ul-context-inspector)
+ *      with a null fallback so nothing renders while the chunk loads.
  */
-
-// Conditionally lazy-load the appropriate screen manager
-const ScreenManager = lazy(() => {
-  if (import.meta.env.DEV) {
-    return import("./DevScreenManager");
-  } else {
-    return import("./ProdScreenManager");
-  }
-});
+const DevScreenManager = lazy(() => import("./DevScreenManager"));
 
 export default function App() {
+  if (import.meta.env.DEV) {
+    return (
+      <BrandProvider>
+        <Suspense fallback={null}>
+          <DevScreenManager />
+        </Suspense>
+      </BrandProvider>
+    );
+  }
+
   return (
     <BrandProvider>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ScreenManager />
-      </Suspense>
+      <ProdScreenManager />
     </BrandProvider>
   );
 }
