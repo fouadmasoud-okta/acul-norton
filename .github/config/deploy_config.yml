@@ -6,34 +6,34 @@
 default_screen_deployment_status:
   "login-id": true
   "login-password": true
-  "email-identifier-challenge": false
-  "login": false
-  "login-passwordless-email-code": false
-  "login-passwordless-sms-otp": false
-  "mfa-begin-enroll-options": false
-  "mfa-country-codes": false
-  "mfa-email-challenge": false
-  "mfa-email-list": false
-  "mfa-enroll-result": false
-  "mfa-login-options": false
-  "mfa-push-challenge-push": false
-  "mfa-push-enrollment-qr": false
-  "mfa-push-list": false
-  "mfa-push-welcome": false
-  "mfa-sms-challenge": false
-  "mfa-sms-enrollment": false
-  "mfa-sms-list": false
-  "passkey-enrollment": false
-  "passkey-enrollment-local": false
-  "phone-identifier-challenge": false
-  "phone-identifier-enrollment": false
-  "reset-password": false
-  "reset-password-email": false
-  "reset-password-error": false
-  "reset-password-success": false
-  "signup": false
+  "email-identifier-challenge": true
+  "login": true
+  "login-passwordless-email-code": true
+  "login-passwordless-sms-otp": true
+  "mfa-begin-enroll-options": true
+  "mfa-country-codes": true
+  "mfa-email-challenge": true
+  "mfa-email-list": true
+  "mfa-enroll-result": true
+  "mfa-login-options": true
+  "mfa-push-challenge-push": true
+  "mfa-push-enrollment-qr": true
+  "mfa-push-list": true
+  "mfa-push-welcome": true
+  "mfa-sms-challenge": true
+  "mfa-sms-enrollment": true
+  "mfa-sms-list": true
+  "passkey-enrollment": true
+  "passkey-enrollment-local": true
+  "phone-identifier-challenge": true
+  "phone-identifier-enrollment": true
+  "reset-password": true
+  "reset-password-email": true
+  "reset-password-error": true
+  "reset-password-success": true
+  "signup": true
   "signup-id": true
-  "signup-password": false
+  "signup-password": true
   
   # Screens not yet implemented (alphabetically sorted):
   # "accept-invitation": false
