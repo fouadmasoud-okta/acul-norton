@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth0 - Customer Identity</title>
+
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'auth0': {
+                            'dark': '#0a0a0a',
+                            'card': '#1a1a2e',
+                            'cyan': '#00d4aa',
+                            'teal': '#00b4d8',
+                            'purple': '#7c3aed',
+                        }
+                    }
+                }
+            }
+        }
+
+        // Configuration variables
+        const hideFeatureTiles = true;
+        const hideFooterBanner = true;
+    </script>
+
+    <!-- Load Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Auth0 style headings - lighter weight, not uppercase */
+        h1, h2, h3 {
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        /* Gradient text for headings */
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Light mode styles */
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+        body.light-mode header {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-color: #e5e5e5;
+        }
+        body.light-mode header a,
+        body.light-mode header span {
+            color: #1a1a1a;
+        }
+        body.light-mode header .text-neutral-400 {
+            color: #666;
+        }
+        body.light-mode header img {
+            filter: brightness(0);
+        }
+        body.light-mode #hero-section > div:first-child {
+            background: linear-gradient(to bottom right, #f5f5f5, #e5e5e5, #f0f0f0);
+        }
+        body.light-mode h1 {
+            color: #1a1a1a;
+        }
+        body.light-mode .text-neutral-400 {
+            color: #666;
+        }
+        body.light-mode .text-auth0-cyan {
+            color: #0077b6;
+        }
+        body.light-mode #theme-toggle {
+            background-color: #e5e5e5;
+            color: #1a1a1a;
+        }
+        body.light-mode #theme-toggle:hover {
+            background-color: #d5d5d5;
+        }
+        body.light-mode .bg-white {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        body.light-mode .bg-white:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body class="bg-auth0-dark text-white antialiased">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-black/80 backdrop-blur-md border-b border-neutral-800/50 sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+
+            <!-- Logo and Left-side Nav -->
+            <div class="flex items-center space-x-8">
+                <!-- Auth0 Logo -->
+                <a href="#" class="flex items-center">
+                    <img src="https://awhitmana0.github.io/auth0dem0logo-white.svg" alt="Auth0" class="h-10">
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="https://auth0.com/docs" class="text-sm text-neutral-400 hover:text-white transition-colors">Documentation</a>
+                    <a href="https://auth0.com/blog" class="text-sm text-neutral-400 hover:text-white transition-colors">Blog</a>
+                </div>
+            </div>
+
+            <!-- Right-side Nav -->
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-3">
+                    {{#if profile}}
+                        <!-- Logged In: Show Logout Button -->
+                        <a href="/logout" class="text-sm font-medium bg-white text-black px-5 py-2 rounded-md hover:bg-neutral-200 transition-colors">
+                            Log out
+                        </a>
+                    {{else}}
+                        <!-- Logged Out: Show Login Button -->
+                        <a href="/protected" class="text-sm font-medium bg-white text-black px-5 py-2 rounded-md hover:bg-neutral-200 transition-colors">
+                            Login
+                        </a>
+                    {{/if}}
+                </div>
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-white hover:bg-neutral-900 rounded-md">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    {{#if profile}}
+    <!-- ============================================ -->
+    <!-- LOGGED-IN VIEW: Dashboard -->
+    <!-- ============================================ -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div class="max-w-4xl mx-auto">
+            <!-- Welcome Section -->
+            <div class="bg-gradient-to-br from-neutral-900 to-neutral-900/50 border border-neutral-800/50 rounded-2xl p-8 mb-8">
+                <p class="text-auth0-cyan text-sm font-medium mb-2">Welcome back</p>
+                <h1 class="text-4xl md:text-5xl font-light text-white mb-4">
+                    {{#if profile.given_name}}{{profile.given_name}}{{else}}User{{/if}}
+                </h1>
+                <p class="text-lg text-neutral-400">
+                    You're authenticated and ready to explore.
+                </p>
+            </div>
+
+            <!-- Profile Information Card -->
+            <div class="bg-gradient-to-br from-neutral-900 to-neutral-900/50 border border-neutral-800/50 rounded-2xl p-8 mb-8">
+                <h2 class="text-xl font-medium text-white mb-6 flex items-center">
+                    <i data-lucide="user" class="w-5 h-5 mr-3 text-auth0-cyan"></i>
+                    Your Profile
+                </h2>
+                <div class="space-y-4">
+                    {{#each profile}}
+                    <div class="flex items-start border-b border-neutral-800/50 pb-4 last:border-b-0 last:pb-0">
+                        <span class="font-medium text-neutral-500 min-w-[140px] text-sm">{{@key}}</span>
+                        <span class="text-neutral-300 text-sm">{{this}}</span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <div class="mt-8 text-center">
+                <a href="/logout" class="inline-block bg-white text-black px-8 py-3 rounded-md font-medium hover:bg-neutral-200 transition-colors">
+                    Log out
+                </a>
+            </div>
+        </div>
+    </main>
+
+    {{else}}
+    <!-- ============================================ -->
+    <!-- LOGGED-OUT VIEW: Landing Page -->
+    <!-- ============================================ -->
+
+    <!-- Main Hero Section -->
+    <main id="hero-section" class="relative overflow-hidden">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-auth0-dark via-neutral-900 to-auth0-card"></div>
+
+        <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Left Column: Text Content -->
+                <div class="flex flex-col space-y-8 max-w-2xl">
+                    <p class="text-auth0-cyan text-base font-semibold uppercase tracking-widest">Demo Environment</p>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-white leading-tight">
+                        Auth0 Quickstart
+                    </h1>
+                    <p class="text-xl md:text-2xl text-neutral-400 leading-relaxed">
+                        Experience seamless authentication in action. Sign up or log in to explore the Auth0 platform.
+                    </p>
+
+                    <!-- Button -->
+                    <div class="mt-6">
+                        <a href="/protected" class="bg-white text-black px-8 py-4 rounded-md font-medium hover:bg-neutral-200 transition-colors text-base text-center inline-block">
+                            Sign Up
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Auth0 Hero Image -->
+                <div class="hidden lg:flex items-center justify-center">
+                    <img src="https://cdn.auth0.com/website/website/b2c/hero-asset.png" alt="Auth0 Customer Identity" class="w-full max-w-xl xl:max-w-2xl">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Feature Tiles Section -->
+    <section id="feature-tiles" class="bg-auth0-dark py-16 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Feature Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Tile 1 -->
+                <div class="bg-gradient-to-br from-neutral-900 to-neutral-900/50 border border-neutral-800/50 rounded-xl p-6 hover:border-auth0-cyan/50 transition-colors duration-300">
+                    <div class="bg-gradient-to-br from-auth0-purple to-auth0-cyan w-10 h-10 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="folder-key" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h3 class="text-base font-medium text-white mb-2">Fine Grained Access</h3>
+                    <p class="text-neutral-400 text-sm">
+                        Implement relationship-based access control with Auth0 FGA.
+                    </p>
+                </div>
+
+                <!-- Tile 2 -->
+                <div class="bg-gradient-to-br from-neutral-900 to-neutral-900/50 border border-neutral-800/50 rounded-xl p-6 hover:border-auth0-cyan/50 transition-colors duration-300">
+                    <div class="bg-gradient-to-br from-auth0-purple to-auth0-cyan w-10 h-10 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h3 class="text-base font-medium text-white mb-2">Enterprise Security</h3>
+                    <p class="text-neutral-400 text-sm">
+                        Bank-grade security with compliance standards built in.
+                    </p>
+                </div>
+
+                <!-- Tile 3 -->
+                <div class="bg-gradient-to-br from-neutral-900 to-neutral-900/50 border border-neutral-800/50 rounded-xl p-6 hover:border-auth0-cyan/50 transition-colors duration-300">
+                    <div class="bg-gradient-to-br from-auth0-purple to-auth0-cyan w-10 h-10 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="smartphone" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h3 class="text-base font-medium text-white mb-2">Adaptive MFA</h3>
+                    <p class="text-neutral-400 text-sm">
+                        Contextual Multi-Factor Authentication that adapts to risk levels.
+                    </p>
+                </div>
+
+                <!-- Tile 4 -->
+                <div class="bg-gradient-to-br from-neutral-900 to-neutral-900/50 border border-neutral-800/50 rounded-xl p-6 hover:border-auth0-cyan/50 transition-colors duration-300">
+                    <div class="bg-gradient-to-br from-auth0-purple to-auth0-cyan w-10 h-10 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="code-2" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h3 class="text-base font-medium text-white mb-2">Developer First</h3>
+                    <p class="text-neutral-400 text-sm">
+                        Customize every flow with serverless Actions and complete UI control.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Notification Banner -->
+    <div id="footer-banner" class="fixed bottom-0 left-0 right-0 bg-neutral-900/95 backdrop-blur-md border-t border-neutral-800 p-4 z-40">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm text-neutral-300">
+                <span class="font-medium text-white">Auth0 for AI Agents:</span> Built-in auth and fine-grained data access control
+                <a href="https://auth0.com/ai" class="text-auth0-cyan hover:underline whitespace-nowrap ml-1">Developer Preview</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Light/Dark Mode Toggle -->
+    <button id="theme-toggle" class="fixed bottom-4 left-4 z-50 bg-neutral-800 hover:bg-neutral-700 text-white p-3 rounded-full shadow-lg transition-colors" aria-label="Toggle theme">
+        <i data-lucide="sun" class="w-5 h-5 hidden" id="sun-icon"></i>
+        <i data-lucide="moon" class="w-5 h-5" id="moon-icon"></i>
+    </button>
+
+    {{/if}}
+
+    <!-- Initialize Lucide Icons and handle visibility -->
+    <script>
+      lucide.createIcons();
+
+      // Hide sections based on configuration
+      if (hideFeatureTiles) {
+        const featureTiles = document.getElementById('feature-tiles');
+        if (featureTiles) featureTiles.style.display = 'none';
+      }
+      if (hideFooterBanner) {
+        const footerBanner = document.getElementById('footer-banner');
+        if (footerBanner) footerBanner.style.display = 'none';
+      }
+
+      // If both are hidden, make hero section full height and prevent scrolling
+      if (hideFeatureTiles && hideFooterBanner) {
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection) {
+          heroSection.style.minHeight = 'calc(100vh - 73px)'; // Subtract navbar height
+        }
+        document.body.style.overflow = 'hidden';
+      }
+
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('theme-toggle');
+      const sunIcon = document.getElementById('sun-icon');
+      const moonIcon = document.getElementById('moon-icon');
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('light-mode');
+          sunIcon.classList.toggle('hidden');
+          moonIcon.classList.toggle('hidden');
+        });
+      }
+    </script>
+
+</body>
+</html>
