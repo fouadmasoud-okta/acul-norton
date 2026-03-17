@@ -1,3 +1,4 @@
+import { BrandWelcomePanel } from "@/components/BrandWelcomePanel";
 import ULThemeCard from "@/components/ULThemeCard";
 import ULThemeSeparator from "@/components/ULThemeSeparator";
 import { extractTokenValue } from "@/utils/helpers/tokenUtils";
@@ -8,7 +9,6 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import LoginIdForm from "./components/LoginIdForm";
 import { useLoginIdManager } from "./hooks/useLoginIdManager";
-import screenLocales from "./locales/en.json";
 
 function LoginIdScreen() {
   // Extracting attributes from hook made out of LoginIdInstance class of Auth0 React ACUL SDK
@@ -46,17 +46,7 @@ function LoginIdScreen() {
   return (
     // Applying UDS theme overrides using the "theme-universal" class
     <div className="theme-universal flex min-h-screen bg-(color:--ul-theme-page-bg-background-color) bg-(image:--ul-theme-page-bg-background-image-url)">
-      {/* Left welcome panel - hidden on small screens */}
-      <div className="hidden lg:flex flex-1 items-center px-16 py-20">
-        <div className="max-w-lg">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {screenLocales.welcomePanel.title}
-          </h1>
-          <p className="text-lg text-gray-600">
-            {screenLocales.welcomePanel.description}
-          </p>
-        </div>
-      </div>
+      <BrandWelcomePanel />
       {/* Right login card panel */}
       <div className="flex items-center justify-center px-10 py-20 w-full lg:w-auto lg:min-w-[480px]">
         <ULThemeCard className="w-full max-w-[400px] gap-0 py-6">

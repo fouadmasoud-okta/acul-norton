@@ -1,5 +1,7 @@
 import { lazy, Suspense } from "react";
 
+import { BrandProvider } from "./brands/BrandProvider";
+
 /**
  * Main App Component
  * Conditionally loads DevScreenManager or ProdScreenManager based on environment
@@ -17,8 +19,10 @@ const ScreenManager = lazy(() => {
 
 export default function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ScreenManager />
-    </Suspense>
+    <BrandProvider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ScreenManager />
+      </Suspense>
+    </BrandProvider>
   );
 }
